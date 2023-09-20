@@ -18,10 +18,7 @@
 // so instead we can use interface
 // the interface Vehicle is like a variable that contains the types
 
-interface Vehicle {
-  name: string;
-  year: Date;
-  broken: boolean;
+interface Reportable {
   summary(): string;
 }
 
@@ -33,9 +30,19 @@ const oldCivic = {
     return `Name: ${this.name}`;
   },
 };
-function printVehicle(vehicle: Vehicle): void {
-  console.log(`Name: ${vehicle.name}`);
-  console.log(`Year: ${vehicle.year}`);
-  console.log(`Broken? ${vehicle.broken}`);
+
+const drink = {
+  color: "brown",
+  carbonated: true,
+  sugar: 40,
+  summary(): string {
+    return `My drink has ${this.sugar} g of sugar`;
+  },
+};
+function printSummary(item: Reportable): void {
+  console.log(item.summary());
 }
-printVehicle(oldCivic);
+printSummary(oldCivic);
+printSummary(drink);
+
+//typescript checks to see if the vehicle passed into the printVehicle function has more properties than whats defined in the interface, typescript won't recognize this as a problem
